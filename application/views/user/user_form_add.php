@@ -21,82 +21,80 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="row">            
-          <div class="col mb-2">
-            <a href="<?= site_url('user'); ?>" class="btn btn-primary btn-flat btn-sm"><i class="fas   fa-undo-alt mr-2"></i>Back</a>
-          </div>
-        </div>
 
         <div class="box-body">
-          <div class="row">
-            <div class="col-md-6">
-              <form class="mb-6" action="" method="post">
-                <div class="row mb-3">
-                  <label for="username" class="col-sm-2 col-form-label">Username*</label>
+          <div class="row justify-content-center">
+            <div class="col-sm-10">
 
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="username" name="username">
-                  </div>
-                </div>
+              <a href="<?= site_url('user'); ?>" class="btn btn-primary btn-flat btn-px-2 mb-4 float-right"><i class="fas   fa-undo-alt mr-2"></i>Back</a>
 
-                <div class="row mb-3">
-                  <label for="password" class="col-sm-2 col-form-label">Password*</label>
+              <form action="" method="post">              
 
-                  <div class="col-sm-8">
-                    <input type="password" class="form-control" id="password" name="password">
-                  </div>
-                </div>
-                  <div class="row mb-3">
-                    <label for="passwordconf" class="col-sm-2 col-form-label">Konfirmasi Password*</label>
-                    <div class="col-sm-8 mt-3">
-                      <input type="password" class="form-control" id="passwordconf" name="passwordconf">
-                    </div>
-                  </div>
-
-                  <div class="row my-3">
-                  <label for="name" class="col-sm-2 col-form-label">Nama Lengkap*</label>
-
-                  <div class="col-sm-8 mt-3">
-                    <input type="text" class="form-control" id="name" name="name">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="phone" class="col-sm-2 col-form-label">Telephone*</label>
-
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="phone" name="phone">
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <label for="address" class="col-sm-2 col-form-label">Alamat</label>
-
-                  <div class="col-sm-8">
-                    <textarea name="address" id="address" class="form-control" name="address"></textarea>
-                  </div>
-                </div>
-
-                <fieldset class="row mb-3">
-                  <legend class="col-form-label col-sm-2 pt-0">Level*</legend>
-                    <div class="col-sm-10">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="level" id="gridRadios1" value="1">
-                        <label class="form-check-label" for="gridRadios1">
-                          Admin
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="level" id="gridRadios2" value="2">
-                        <label class="form-check-label" for="gridRadios2">
-                          Kasir
-                        </label>
-                      </div>                    
-                    </div>
-                  </fieldset>
+                <div class="form-group">
+                  <label for="username" class="col-sm col-form-label">Username*</label>
+                  <input type="text" class="form-control <?=form_error('username') ? 'is-invalid' : null; ?>" id="username" name="username" value="<?=set_value('username');?>" >
+                  <span id="username" class="<?=form_error('username') ? 'error invalid-feedback' : null; ?> ml-2">
+                    <?=form_error('username'); ?>
+                  </span>
                   
-                  <div class="my-4">
-                    <button type="submit" class="btn btn-primary mb-6"><i class="fas fa-paper-plane mr-2"> </i>Tambah User Baru</button>
+                </div>
+
+                <div class="form-group">
+                  <label for="password" class="col-sm col-form-label">Password*</label>
+                  <input type="password" class="form-control <?=form_error('password') ? 'is-invalid' : null; ?>" id="password" name="password">             
+                  <span id="password" class="<?=form_error('password') ? 'error invalid-feedback' : null; ?> ml-2">
+                    <?=form_error('password'); ?>
+                  </span>     
+                </div>
+
+                <div class="form-group">
+                  <label for="passconf" class="col-sm col-form-label">Konfirmasi Password*</label>
+                  <input type="password" class="form-control <?=form_error('passconf') ? 'is-invalid' : null; ?>" id="passconf" name="passconf">
+                  <span id="passconf" class="<?=form_error('passconf') ? 'error invalid-feedback' : null; ?> ml-2">
+                    <?=form_error('passconf'); ?>
+                  </span> 
+                </div>
+
+                <div class="form-group">
+                  <label for="name" class="col-sm col-form-label">Nama Lengkap*</label>
+                  <input type="text" class="form-control <?=form_error('name') ? 'is-invalid' : null; ?>" id="name" name="name" value="<?=set_value('name');?>">
+                  <span id="name" class="<?=form_error('name') ? 'error invalid-feedback' : null; ?> ml-2">
+                    <?=form_error('name'); ?>
+                  </span>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone" class="col-sm col-form-label">Telephone*</label>
+                  <input type="text" class="form-control <?=form_error('phone') ? 'is-invalid' : null; ?>" id="phone" name="phone" value="<?=set_value('phone');?>">
+                  <span id="phone" class="<?=form_error('phone') ? 'error invalid-feedback' : null; ?> ml-2">
+                    <?=form_error('phone'); ?>
+                  </span>
+                </div>
+
+                <div class="form-group">
+                  <label for="address" class="col-sm col-form-label">Alamat</label>
+                  <textarea name="address" id="address" class="form-control" name="address"><?=set_value('address');?></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="level">Level*</label>
+                  <select name="level" class="form-control <?=form_error('level') ? 'is-invalid' : null; ?>" id="level">
+                    <option value="">-Pilih-</option>
+                    <option value="1" <?=set_value('level') == 1 ? "selected" : null ;?>>Admin</option>
+                    <option value="2" <?=set_value('level') == 2 ? "selected" : null ;?>>Kasir</option>
+                  </select>
+                  <span id="level" class="<?=form_error('level') ? 'error invalid-feedback' : null; ?> ml-2">
+                    <?=form_error('level'); ?>
+                  </span>
+                </div>
+
+                <div>
+                  <p><small>* wajib untuk diisi</small></p>
+                </div>
+                  
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-flat mb-6 mx-2"><i class="fas fa-paper-plane mr-2"> </i>Tambah User Baru</button>
+                    <button type="reset" class="btn btn-flat mb-6 mx-2"><i class="fas fa-paper-plane mr-2"> </i>Reset</button>
                   </div>
               </form>
             </div>
