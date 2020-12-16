@@ -81,7 +81,7 @@
                   <legend class="col-form-label col-sm-2 pt-0">Level*</legend>
                     <div class="col-sm-10">
                       <div class="form-check">
-                        <input class="form-check-input" type="radio" name="level" id="gridRadios1" value="1" checked>
+                        <input class="form-check-input" type="radio" name="level" id="gridRadios1" value="1">
                         <label class="form-check-label" for="gridRadios1">
                           Admin
                         </label>
