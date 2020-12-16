@@ -67,9 +67,7 @@
         </a>
         <ul class="dropdown-menu">
           <li class="user-header">
-          <!-- <img src="
-          base_url()
-          assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image"> -->
+          <img src="<?=base_url();?>assets/dist/img/<?= $this->fungsi->user_login()->level;?>.jpg" class="img-circle" alt="User Image">
           <p> <?= $this->fungsi->user_login()->name; ?>
             <small><?= $this->fungsi->user_login()->address; ?></small>
           </p>
@@ -102,7 +100,7 @@
       <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <!-- <img src="base_url() assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+          <img src="<?=base_url();?>assets/dist/img/<?= $this->fungsi->user_login()->level;?>.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class=" pull-left info">
           <p class="text-light d-block"><?= ucfirst($this->fungsi->user_login()->name); ?></p>
@@ -136,7 +134,7 @@
               </p>
             </a>
           </li>
-          <?php if($this->session->userdata('level') == 1 ) { ?>
+          <?php if($this->fungsi->user_login()->level == 1 ) { ?>
           <li class="nav-item">
             <a href="<?= site_url('suppliers'); ?>" class="nav-link">
               <i class="nav-icon fas fa-truck"></i>
@@ -202,7 +200,7 @@
                   <p>Sales</p>
                 </a>
               </li>
-              <?php if($this->session->userdata('level') == 1 ) { ?>
+              <?php if($this->fungsi->user_login()->level == 1 ) { ?>
               <li class="nav-item">
                 <a href="<?= site_url('stockin'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -278,6 +276,7 @@
       <b>Version</b> 1.0.0
     </div>
     <strong> @yaserantariksa, build 2020    | ya POS : </strong> Point of Sales for everyone.
+     | Admin and Kasir <a href="https://www.freepik.com/vectors/logo">Logo vector created by roserodionova - www.freepik.com</a>
   </footer>
 
   <!-- Control Sidebar -->
