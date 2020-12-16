@@ -33,6 +33,14 @@ class User_model extends CI_Model
         $this->db->insert('tb_user',$params);
     }
 
+    public function del($id)
+	{
+		$this->db->where('user_id',$id);
+		$this->db->delete('tb_user');
+	}
+
+
+
 }
 
 

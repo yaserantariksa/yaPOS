@@ -53,8 +53,14 @@
                                 <td><?= $data->address ; ?></td>
                                 <td class="text-center"><?= $data->level == 1 ? "Admin" : "Kasir"; ?></td>
                                 <td class="text-center">
-                                    <a href="#" class="btn btn-warning btn-flat btn-sm px-3 mr-2 my-1">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-flat btn-sm mr-2 my-1">Hapus</a>
+                                  <form action="<?=site_url('user/del');?>" method="POST">
+                                    
+                                    <a href="<?=site_url('user/edit/'.$data->username);?>" class="btn btn-warning btn-flat btn-sm px-3 mr-2 my-1">Edit</a>
+
+                                      <input type="hidden" value="<?=$data->user_id;?>" name="user_id">
+                                      <button onclick="return confirm('Apakah yakin user akan dihapus ?')" class="btn btn-danger btn-flat btn-sm mr-2 my-1">Hapus</button>
+                                  </form>
+
                                 </td>
                             </tr>
                             <?php } ?>
