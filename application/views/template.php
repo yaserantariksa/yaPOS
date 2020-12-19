@@ -124,32 +124,28 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-header">MAIN NAVIGATION</li>
           <li class="nav-item">
             <a href="<?= base_url('dashboard'); ?>" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
             </a>
           </li>
           <?php if($this->fungsi->user_login()->level == 1 ) { ?>
           <li class="nav-item">
-            <a href="<?= site_url('suppliers'); ?>" class="nav-link">
+            <a href="<?= site_url('supplier'); ?>" class="nav-link">
               <i class="nav-icon fas fa-truck"></i>
               <p>
-                Suppliers
-                <!-- <i class="right fas fa-angle-left"></i> -->
+                Supplier
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= site_url('customers'); ?>" class="nav-link">
+            <a href="<?= site_url('customer'); ?>" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Customers
-                <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
             </a>
           </li>
@@ -239,13 +235,12 @@
               </li>
             </ul>
           </li>
-          <li class="nav-header">SETTING</li>
+          <br> <br>
           <li class="nav-item">
             <a href="<?= site_url('user'); ?>" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Users
-                <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
             </a>
           </li>
@@ -254,7 +249,6 @@
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Configuration
-                <!-- <i class="right fas fa-angle-left"></i> -->
               </p>
             </a>
           </li>
