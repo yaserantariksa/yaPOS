@@ -1,0 +1,20 @@
+"cust_id","cust_name","cust_membercard","cust_phone","cust_email","cust_ktp","cust_birthday","cust_address","cust_category","created","updated"
+"1","Jajang Nurjaman",,"7252834930",,,"1980-08-11","jhfdjhasljfandflahaksl","UMUM","2020-12-19 22:39:45",NULL
+"2","Ecep Supriatna","M00000001","723469284981676392",,,"1973-06-08","ksdfjklajfkjsd;fj","MEMBER","2020-12-19 22:41:08",NULL
+"3","Suprianto",,"9823479236472638",,,"1980-01-10","lsfkdahsdfa;sldkjfk","RESELLER","2020-12-19 22:41:53",NULL
+"5","ALAM SETIABAKTI",,"28349284893",,,"0000-00-00",,"MEMBER","2020-12-19 23:44:40","2020-12-19 17:45:02"
+"6","maman abdurahman",,"986476394872348","maman@man.com","34692834","0000-00-00",,"RESELLER","2020-12-19 23:46:57",NULL
+"product_cat_id","product_cat_code","product_cat_name","product_cat_desc"
+"supplier_id","sup_name","sup_phone","sup_address","sup_desc","created","updated"
+"1","Toko A","82432948279","Alamat Toko A di Kota Bandung","menjual sembako","2020-12-17 21:15:49",NULL
+"8","Toko B","0888811112222","bandung selatan","jual cat tembok , punya pa haji jajang","2020-12-18 23:27:18","2020-12-19 15:34:40"
+"9","Toko C","088822222333","jakarta","jual alat kesehatan","2020-12-18 23:27:42","2020-12-19 15:32:54"
+"10","Toko D","28437923847","Bandung Selatan","Jual regulator gas","2020-12-19 00:29:03",NULL
+"11","Toko E","98462386416565","banjaran","jual minyak goreng","2020-12-19 21:02:26",NULL
+"unit_id","unit_code","unit_name","unit_desc"
+"user_id","username","password","name","phone","address","level"
+"1","admin","d033e22ae348aeb5660fc2140aec35850c4da997","A Yaser Antariksa","081395458208","Komplek GPA Baleendah, Kab.Bandung","1"
+"2","kasir01","70f089b876277b1d20134b170b5b06ba5b58a7c6","Nama Kasir Area 1","0888899991111","Area Kasir 1 Baleendah, Kab Bandung","2"
+"6","admin01","cb0ef4c7be04ff1bf4cfcd104ef8df03251266ab","yaser antariksa","03720735290489","sad;fhs;dkfjk","1"
+"7","kasir02","831b492dcc7c8812045f0a9be271e92c01d53951","kasir nol dua","925027500","rumah kasir nol dua","2"
+"8","kasir03","6646d5d654370ec83b032355d0b86f8ed370f9a8","kasir nol tiga","920384738","sdf;a;fjslkdjfk","2"
