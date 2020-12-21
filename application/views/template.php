@@ -159,13 +159,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= site_url('categories'); ?>" class="nav-link">
+                <a href="<?= site_url('product_category'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= site_url('units'); ?>" class="nav-link">
+                <a href="<?= site_url('unit'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Units</p>
                 </a>
