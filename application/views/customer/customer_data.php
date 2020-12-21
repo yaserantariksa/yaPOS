@@ -29,7 +29,7 @@
         </div>
             <div class="box">
                 <div class="box-body table-responsive ">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped table-sm" id="table1">
                         <thead class="text-center">
                             <tr>
                                 <th>#</th>
