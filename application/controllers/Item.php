@@ -56,9 +56,19 @@ class item extends CI_Controller {
 
 		if($query->num_rows() >0 ) {
 			$item = $query->row();
+			$query_category = $this->product_category_model->get();
+
+			$query_unit = $this->unit_model->get();
+			$unit[null] = '- Pilih -' ;
+			foreach($query_unit->result() as $unt) {
+				$unit[$unt->unit_id] = $unt->unit_code ;
+			}
+
 			$data = array(
 				'page' => 'edit',
-				'row' => $item
+				'row' => $item,
+				'category' => $query_category,
+				'unit' => $unit, 'selectedunit' => $item->unit_id
 			);
 
 			$this->template->load('template','item/item_form', $data);
@@ -79,7 +89,7 @@ class item extends CI_Controller {
 		}
 
 		if($this->db->affected_rows() > 0) {
-			echo "<script>alert('Data berhasil ditambahkan');</script>" ;
+			echo "<script>alert('Data berhasil diproses');</script>" ;
 		}
 
 		echo "<script>window.location= '".site_url('item')."';</script>";

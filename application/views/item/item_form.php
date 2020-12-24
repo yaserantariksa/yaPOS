@@ -53,7 +53,7 @@
                   <select name="product_cat_id" class="form-control <?=form_error('product_cat_id') ? 'is-invalid' : null; ?>" id="product_cat_id">
                     <option value="">-Pilih-</option>
                     <?php foreach($category->result() as $key => $data ) { ;?>
-                        <option value="<?=$data->product_cat_id ; ?>"><?=$data->product_cat_code ; ?></option>
+                        <option value="<?=$data->product_cat_id ; ?>" <?=$data->product_cat_id == $row->product_cat_id ? "selected" : null ; ?>><?=$data->product_cat_code ; ?></option>
                     <?php } ; ?>
                   </select>
                   <span id="product_cat_id" class="<?=form_error('product_cat_id') ? 'error invalid-feedback' : null; ?> ml-2">
