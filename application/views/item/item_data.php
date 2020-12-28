@@ -20,8 +20,16 @@
 
     <!-- Main content -->
     <section class="content">
+    <?php $this->view('pesan'); ?>
+
+    <?php if(isset($_SESSION['sukses'])){
+    unset($_SESSION['sukses']);} ?>
+    <?php if(isset($_SESSION['error'])){
+    unset($_SESSION['error']);} ?>
+
         <div class="container-fluid">
         <div class="row">
+
 
           <div class="col mb-2">
                 <a href="<?=site_url('item/add');?>" class="btn btn-primary btn-flat btn-sm"><i class="fas   fa-user-plus mr-2"></i>Tambah Item Baru</a>
@@ -34,12 +42,14 @@
                             <tr>
                                 <th>#</th>
                                 <th>Kode Barcode</th>
+                                <th>Gambar Produk</th>
                                 <th>Nama Item</th>
                                 <th>Kategori Produk</th>
                                 <th>Satuan</th>
                                 <th>Harga Beli</th>
                                 <th>Harga Eceran</th>
                                 <th>Harga Reseller</th>
+                                <th>Stock</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -49,12 +59,18 @@
                             <tr>
                                 <td class="text-center"><?= $i++ ; ?></td>
                                 <td><?= $data->item_barcode ; ?></td>
+                                <td>
+                                  <?php if($data->item_img != null ) { ?>
+                                  <img src="<?= base_url('upload/item_img/'.$data->item_img) ; ?>" alt="" style="width: 50px;" class="rounded mx-auto d-block">
+                                  <?php } ; ?>                                  
+                                </td>
                                 <td><?= $data->item_name ; ?></td>
-                                <td><?= $data->product_cat_id ; ?></td>
-                                <td><?= $data->unit_id ; ?></td>
+                                <td><?= $data->product_cat_code ; ?></td>
+                                <td><?= $data->unit_code ; ?></td>
                                 <td><?= $data->item_harbel ; ?></td>
                                 <td><?= $data->item_harjual1 ; ?></td>
                                 <td><?= $data->item_harjual2 ; ?></td>
+                                <td><?= $data->item_stock ; ?></td>
                                 <td class="text-center">
                                 <form action="<?=site_url('item/del');?>" method="POST">
                                 

@@ -27,9 +27,15 @@
           <div class="row justify-content-center">
             <div class="col-sm-10">
 
+              <?php $this->view('pesan'); ?>
+              <?php if(isset($_SESSION['sukses'])){
+              unset($_SESSION['sukses']);} ?>
+              <?php if(isset($_SESSION['error'])){
+              unset($_SESSION['error']);} ?>
+
               <a href="<?= site_url('item'); ?>" class="btn btn-primary btn-flat btn-px-2 mb-4 float-right"><i class="fas   fa-chevron-circle-left mr-2"></i>Back</a>
 
-              <form action="<?=site_url('item/proses') ?> " method="post">           
+              <?php echo form_open_multipart('item/proses'); ?>         
 
                 <div class="form-group">
                   <label for="item_barcode" class="col-sm col-form-label">Kode Barcode *</label>
@@ -93,12 +99,29 @@
                   </span>                  
                 </div>
 
+                
+                  <div class="form-group">
+                    <div>
+                      <?php if($page == 'edit') {
+                        if($row->item_img != null) { ;?>
+                        <label for="item_img" class="mr-4"> Ubah Gambar : </label>
+                        <img src="<?= base_url('/upload/item_img/'.$row->item_img) ; ?>" alt="" style="width: 100px; border: 2px solid #555; padding: 10px 10px 10px 10px;" class="mb-3">
+                        <?php } else { ?>
+                          <label for="item_img" class="mr-4"> Upload Gambar : </label>
+                        <?php }
+                    } ; ?>
+                    </div>
+                    <input type="file" name="item_img" id="item_img" >
+                  </div>
+                
             
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success btn-flat mb-6 mx-2" name="<?=$page ;?>"><i class="fas fa-save mr-2"> </i>Save</button>
+                    <button type="submit" class="btn btn-success btn-flat mb-6" name="<?=$page ;?>"><i class="fas fa-save mr-2"> </i>Save</button>
                 </div>
-              </form>
+
+              <?php echo form_close() ; ?>
+
             </div>
           </div>
         </div>

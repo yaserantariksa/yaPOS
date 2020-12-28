@@ -79,21 +79,85 @@ class item extends CI_Controller {
 	}
 
 	public function proses() {
+
+		$config['upload_path'] 		= './upload/item_img' ;
+		$config['allowed_types'] 	= 'gif|jpg|png|jpeg' ;
+		$config['max_size'] 		= 2048 ;
+		$config['file_name']		= 'item-'.date('ymd').'-'.substr(md5(rand()),0,10);
+		$this->load->library('upload',$config) ;
+
 		$post = $this->input->post(null, true);
 		if(isset($_POST['add'])) {
-			$this->item_model->add($post);
+			if($this->item_model->cek_barcode($post['item_barcode'])->num_rows() > 0) {
+				$this->session->set_flashdata('error',"Barcode $post[item_barcode] sudah dipakai") ;
+				redirect('item/add');
+			} else {
+				
+				if(@$_FILES['item_img']['name'] != null ) {
+					if($this->upload->do_upload('item_img')) {
+						$post['item_img'] = $this->upload->data('file_name') ;
+						$this->item_model->add($post);
+						if($this->db->affected_rows() > 0) {
+							$this->session->set_flashdata('sukses','Data berhasil disimpan') ;
+						}
+				
+						redirect('item');
+					} else {
+						$error = $this->upload->display_errors();
+						$this->session->set_flashdata('error',$error) ;
+						redirect('item/add');
+					} 
+				} else {
+					$post['image'] = null;
+					$this->item_model->add($post);
+					if($this->db->affected_rows() > 0) {
+						$this->session->set_flashdata('sukses','Data berhasil disimpan') ;
+					}
+			
+					redirect('item');
+				}
+			}
 		} else {
 			if(isset($_POST['edit'])) {
-				$this->item_model->edit($post);
+				if($this->item_model->cek_barcode($post['item_barcode'],$post['item_id'])->num_rows() > 0) {
+					$this->session->set_flashdata('error',"Barcode $post[item_barcode] sudah dipakai") ;
+					redirect('item/edit/'.$post['item_id']);
+				} else {
+					if(@$_FILES['item_img']['name'] != null ) {
+						if($this->upload->do_upload('item_img')) {
+							
+							$item = $this->item_model->get($post['item_id']
+							)->row() ;
+							if($item->item_img != null ) {
+								$target_file = './upload/item_img/'.$item->item_img ;
+								unlink($target_file);
+							}
+
+							$post['item_img'] = $this->upload->data('file_name') ;
+							$this->item_model->edit($post);
+							if($this->db->affected_rows() > 0) {
+								$this->session->set_flashdata('sukses','Data berhasil disimpan') ;
+							}
+					
+							redirect('item');
+						} else {
+							$error = $this->upload->display_errors();
+							$this->session->set_flashdata('error',$error) ;
+							redirect('item/add');
+						} 
+					} else {
+						$post['image'] = null;
+						$this->item_model->edit($post);
+						if($this->db->affected_rows() > 0) {
+							$this->session->set_flashdata('sukses','Data berhasil disimpan') ;
+						}				
+						redirect('item');						
+				}
 			}
 		}
 
-		if($this->db->affected_rows() > 0) {
-			echo "<script>alert('Data berhasil diproses');</script>" ;
-		}
-
-		echo "<script>window.location= '".site_url('item')."';</script>";
 	}
+}
 
 	public function del() {
 

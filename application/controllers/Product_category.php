@@ -10,7 +10,7 @@ class Product_category extends CI_Controller {
 
 		$this->load->model('product_category_model');
 
-		$this->load->library('form_validation');
+		
 	}
 
 	public function index()
@@ -51,6 +51,7 @@ class Product_category extends CI_Controller {
 		} else {
 			echo "<script>alert('Data tidak ditemukan');</script>";
 			echo "<script>window.location='".site_url('product_category')."';</script>";
+
 		}
 	}
 
@@ -65,10 +66,11 @@ class Product_category extends CI_Controller {
 		}
 
 		if($this->db->affected_rows() > 0) {
-			echo "<script>alert('Data berhasil diproses');</script>" ;
+			$this->session->set_flashdata('sukses','Data berhasil diproses');
+			$this->session->set_flashdata('item', 'value');
 		}
 
-		echo "<script>window.location= '".site_url('product_category')."';</script>";
+		redirect('product_category');
 	}
 
 	public function del() {
@@ -78,10 +80,10 @@ class Product_category extends CI_Controller {
 		$this->product_category_model->del($id);
 
 		if($this->db->affected_rows() > 0) {
-			echo "<script>alert('Data berhasil dihapus');</script>" ;
+			$this->session->set_flashdata('sukses','Data berhasil dihapus');
 		}
 
-		echo "<script>window.location= '".site_url('product_category')."';</script>";
+		redirect('product_category');
 	}
 
 }

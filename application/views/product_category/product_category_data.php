@@ -20,8 +20,14 @@
 
     <!-- Main content -->
     <section class="content">
+
+        <?php $this->view('pesan'); ?>
+
+        <?php if(isset($_SESSION['sukses'])){
+        unset($_SESSION['sukses']);} ?>
+
         <div class="container-fluid">
-        <div class="row">
+        <div class="row">        
 
           <div class="col mb-2">
                 <a href="<?=site_url('product_category/add');?>" class="btn btn-primary btn-flat btn-sm"><i class="fas   fa-plus mr-2"></i>Tambah Kategori</a>
