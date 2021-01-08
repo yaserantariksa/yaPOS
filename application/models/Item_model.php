@@ -114,7 +114,7 @@ class item_model extends CI_Model
             'item_harbel' => $post['item_harbel'],
             'item_harjual1' => $post['item_harjual1'],
             'item_harjual2' => $post['item_harjual2'],
-            'item_img' => $post['item_img'],
+            // 'item_img' => $post['item_img'],
             'updated' => date('Y-m-d H:i:s')
         ];
         if($post['item_img' != null ]) {
