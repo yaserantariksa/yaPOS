@@ -21,11 +21,6 @@
     <!-- Main content -->
     <section class="content">
 
-        <?php $this->view('pesan'); ?>
-
-        <?php if(isset($_SESSION['sukses'])){
-        unset($_SESSION['sukses']);} ?>
-
         <div class="container-fluid">
         <div class="row">        
 

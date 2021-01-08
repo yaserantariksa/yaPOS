@@ -2,19 +2,20 @@
 function check_already_login()
 {
     $ci =& get_instance() ;
-    $user_session = $ci->session->userdata('user_id') ;
-    if($user_session) {
-        redirect('dashboard') ;
-    }
+            if (!empty($_SESSION['USERDATA']['user_id'])){
+                redirect('dashboard') ;
+            }
+
 }
 
 function check_not_login()
 {
+
     $ci =& get_instance() ;
-    $user_session = $ci->session->userdata('user_id') ;
-    if(!$user_session) {
+
+        if (empty($_SESSION['USERDATA']['user_id'])){
         redirect('auth/login') ;
-    }    
+        }
 }
 
 function check_admin()
@@ -24,4 +25,9 @@ function check_admin()
     if($ci->fungsi->user_login()->level != 1 ) {
         redirect('dashboard');
     }
+}
+
+function indo_currency($value)
+{
+    return 'Rp. ' . number_format($value, 0, ",", ".");
 }

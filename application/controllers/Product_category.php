@@ -66,11 +66,10 @@ class Product_category extends CI_Controller {
 		}
 
 		if($this->db->affected_rows() > 0) {
-			$this->session->set_flashdata('sukses','Data berhasil diproses');
-			$this->session->set_flashdata('item', 'value');
+			echo "<script>alert('Data tidak disimpan');</script>";
 		}
 
-		redirect('product_category');
+		echo "<script>window.location='".site_url('product_category')."';</script>";
 	}
 
 	public function del() {
@@ -80,10 +79,10 @@ class Product_category extends CI_Controller {
 		$this->product_category_model->del($id);
 
 		if($this->db->affected_rows() > 0) {
-			$this->session->set_flashdata('sukses','Data berhasil dihapus');
+			echo "<script>alert('Data berhasil dihapus');</script>";
 		}
 
-		redirect('product_category');
+		echo "<script>window.location='".site_url('product_category')."';</script>";
 	}
 
 }

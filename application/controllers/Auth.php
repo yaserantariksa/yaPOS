@@ -3,24 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see https://codeigniter.com/user_guide/general/urls.html
-	 */
 	public function login()
 	{
 		check_already_login();
+		
 		$this->load->view('login');
 	}
 
@@ -37,7 +23,11 @@ class Auth extends CI_Controller {
 					'user_id' => $row->user_id,
 					'level' => $row->level
 				);
-				$this->session->set_userdata($params) ;
+
+            $_SESSION['USERDATA']       = $params;
+
+//die(print_R( $_SESSION['USERDATA']));
+//				$this->session->set_userdata($params);
 				echo "
 				<script>
 					alert ('login berhasil') ;
@@ -56,8 +46,8 @@ class Auth extends CI_Controller {
 
 	public function logout()
 	{
-		$params = array('user_id','level') ;
-		$this->session->unset_userdata($params) ;
+            session_unset();
+            session_destroy();
 		redirect('auth/login') ;
 	}
 

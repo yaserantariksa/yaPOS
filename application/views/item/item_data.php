@@ -20,12 +20,6 @@
 
     <!-- Main content -->
     <section class="content">
-    <?php $this->view('pesan'); ?>
-
-    <?php if(isset($_SESSION['sukses'])){
-    unset($_SESSION['sukses']);} ?>
-    <?php if(isset($_SESSION['error'])){
-    unset($_SESSION['error']);} ?>
 
         <div class="container-fluid">
         <div class="row">
@@ -37,7 +31,7 @@
         </div>
             <div class="box">
                 <div class="box-body table-responsive ">
-                    <table class="table table-bordered table-striped table-sm" id="table1">
+                    <table class="table table-bordered table-striped table-sm" id="table3">
                         <thead class="text-center">
                             <tr>
                                 <th>#</th>
@@ -54,7 +48,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 1; ?>
+                            <!-- <?php $i = 1; ?>
                             <?php foreach($row->result() as $key => $data ) { ?>
                             <tr>
                                 <td class="text-center"><?= $i++ ; ?></td>
@@ -67,9 +61,9 @@
                                 <td><?= $data->item_name ; ?></td>
                                 <td><?= $data->product_cat_code ; ?></td>
                                 <td><?= $data->unit_code ; ?></td>
-                                <td><?= $data->item_harbel ; ?></td>
-                                <td><?= $data->item_harjual1 ; ?></td>
-                                <td><?= $data->item_harjual2 ; ?></td>
+                                <td><?= indo_currency($data->item_harbel) ; ?></td>
+                                <td><?= indo_currency($data->item_harjual1) ; ?></td>
+                                <td><?= indo_currency($data->item_harjual2) ; ?></td>
                                 <td><?= $data->item_stock ; ?></td>
                                 <td class="text-center">
                                 <form action="<?=site_url('item/del');?>" method="POST">
@@ -83,7 +77,7 @@
 
                                 </td>
                             </tr>
-                            <?php } ?>
+                            <?php } ?> -->
                         </tbody>
 
 
@@ -98,3 +92,27 @@
   </div>
   <!-- /.content-wrapper -->
 </div>
+
+<script>
+   $(function () {
+    $("#table3").DataTable({
+      "processing": true,
+      "serverSide": true,
+      "order" : [],
+      "ajax": {
+        "url" : "<?= site_url('item/get_ajax') ?>" ,
+        "type" : "POST" }
+      })
+    $('#table2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+
+

@@ -1,4 +1,4 @@
-<?php if($this->session->has_userdata('sukses')) { ?>
+<!-- <?php if($this->session->has_userdata('sukses')) { ?>
     <div class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <i class="icon fas fa-check"></i> 
@@ -7,12 +7,12 @@
 <?php } ?>
 
 <?php if($this->session->has_userdata('error')) { ;?>
-    <div class="alert alert-success alert-dismissible">
+    <div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
         <i class="icon fas fa-ban"></i> 
-        <?= $this->session->flashdata('error'); ?>
+        <?= strip_tags(str_replace('</p>','',$this->session->flashdata('error'))); ?>
     </div>
-<?php } ; ?>
+<?php } ; ?> -->
 
 
 

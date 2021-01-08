@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ya POS by : yaserantariksa</title>
-
+  
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -14,21 +14,26 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?=base_url()?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
+  
   <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/adminlte.min.css">
+
+  <!-- jQuery -->
+  <script src="<?=base_url()?>assets/plugins/jquery/jquery.min.js"></script>
+  
 </head>
 
 <body class="sidebar-mini sidebar-collapse sidebar-closed" style="height: auto;">
-<!-- Site wrapper -->
-<div class="wrapper">
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
+  <!-- Site wrapper -->
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
-
+    
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       
@@ -71,16 +76,16 @@
         </a>
         <ul class="dropdown-menu">
           <li class="user-header">
-          <img src="<?=base_url();?>assets/dist/img/<?= $this->fungsi->user_login()->level;?>.jpg" class="img-circle" alt="User Image">
+            <img src="<?=base_url();?>assets/dist/img/<?= $this->fungsi->user_login()->level;?>.jpg" class="img-circle" alt="User Image">
           <p> <?= $this->fungsi->user_login()->name; ?>
             <small><?= $this->fungsi->user_login()->address; ?></small>
           </p>
           </li>
-        
+          
           <li class="user-footer">
             <div class="mx-auto">
               <a href="#" class="btn btn-default btn-flat float-left">Profile</a>
-
+              
               <a href="<?=site_url('auth/logout') ; ?>" class="btn btn-flat bg-red float-right">Sign Out</a>
             </div>
           </li>
@@ -90,7 +95,7 @@
   </nav>
 
   <!-- /.navbar -->
-
+  
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -98,7 +103,7 @@
       <img src="<?=base_url()?>assets/dist/img/yalogotrans.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light ml-2">ya POS</span>
     </a>
-
+    
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user (optional) -->
@@ -122,14 +127,14 @@
           </div>
         </div>
       </div> -->
-
+      
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="<?= base_url('dashboard'); ?>" class="nav-link <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'active' : '' ;?>">
+               <li class="nav-item">
+                 <a href="<?= base_url('dashboard'); ?>" class="nav-link <?= $this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'active' : '' ;?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -139,10 +144,10 @@
           <?php if($this->fungsi->user_login()->level == 1 ) { ?>
           <li class="nav-item">
             <a href="<?= site_url('supplier'); ?>" class="nav-link <?= $this->uri->segment(1) == 'supplier' ? 'active' : '' ; ?> ">
-              <i class="nav-icon fas fa-truck"></i>
-              <p>
-                Supplier
-              </p>
+            <i class="nav-icon fas fa-truck"></i>
+            <p>
+              Supplier
+            </p>
             </a>
           </li>
           <li class="nav-item">
@@ -170,7 +175,7 @@
               </li>
               <li class="nav-item">
                 <a href="<?= site_url('unit'); ?>" class="nav-link <?= $this->uri->segment(1) == 'unit' ? 'active' : '' ; ?>">
-                  <i class="far fa-circle nav-icon"></i>
+                <i class="far fa-circle nav-icon"></i>
                   <p>Units</p>
                 </a>
               </li>
@@ -202,20 +207,20 @@
               </li>
               <?php if($this->fungsi->user_login()->level == 1 ) { ?>
               <li class="nav-item">
-                <a href="<?= site_url('stockin'); ?>" class="nav-link">
+                <a href="<?= site_url('stock/in'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Stock In</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?= site_url('stockout'); ?>" class="nav-link">
+                <a href="<?= site_url('stock/out'); ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Stock Out</p>
                 </a>
               </li>
             </ul>
           </li>
-
+          
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
@@ -242,7 +247,7 @@
           <br> <br>
           <li class="nav-item">
             <a href="<?= site_url('user'); ?>" class="nav-link <?= $this->uri->segment(1) == 'user' ? 'active' : '' ;?>">
-              <i class="nav-icon fas fa-users"></i>
+            <i class="nav-icon fas fa-users"></i>
               <p>
                 Users
               </p>
@@ -256,37 +261,36 @@
               </p>
             </a>
           </li>
-            <?php } ?>
+          <?php } ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
-
+  
+  
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <?= $contents ?>
   </div>
-
+  
   <footer class="main-footer">
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 1.0.0
     </div>
     <strong> @yaserantariksa, build 2020    | ya POS : </strong> Point of Sales for everyone.
      | Admin and Kasir <a href="https://www.freepik.com/vectors/logo">Logo vector created by roserodionova - www.freepik.com</a>
-  </footer>
+    </footer>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="<?=base_url()?>assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?=base_url()?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->
@@ -308,10 +312,10 @@
 <script src="<?=base_url()?>assets/dist/js/demo.js"></script>
 
 <script>
-   $(function () {
+  $(function () {
     $("#table1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]      
     }).buttons().container().appendTo('#table1_wrapper .col-md-6:eq(0)');
     $('#table2').DataTable({
       "paging": true,
@@ -324,6 +328,9 @@
     });
   });
 </script>
+
+
+
 
 
 </body>

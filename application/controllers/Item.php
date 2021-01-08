@@ -13,6 +13,45 @@ class item extends CI_Controller {
 		$this->load->library('form_validation');
 	}
 
+	function get_ajax() {
+        $list = $this->item_model->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $item) {
+            $no++;
+            $row = array();
+            $row[] = $no.".";
+			$row[] = $item->item_barcode;
+			// .'<br><a href="'.site_url('item/barcode_qrcode/'.$item->item_id).'" class="btn btn-default btn-xs">Generate <i class="fa fa-barcode"></i></a>'
+            $row[] = $item->item_img != null ? '<img src="'.base_url('upload/item_img/'.$item->item_img).'" class="img" style="width:90px">' : null;
+			
+            $row[] = $item->item_name;
+            $row[] = $item->product_cat_name;
+            $row[] = $item->unit_name;
+			$row[] = indo_currency($item->item_harbel);
+			$row[] = indo_currency($item->item_harjual1);
+			$row[] = indo_currency($item->item_harjual2);
+            $row[] = $item->item_stock;
+            // add html for action
+			$row[] = '<a href="'.site_url('item/edit/'.$item->item_id).'" class="btn btn-primary btn-xs px-2"><i class="fas fa-pencil-alt mr-2"></i> Update</a>
+			<a href="'.site_url('item/del/'.$item->item_id).'" onclick="return confirm(\'Yakin hapus data?\')"  class="btn btn-danger btn-xs px-2"><i class="fas fa-trash mr-3"></i>Delete </a>';
+
+			
+
+
+            $data[] = $row;
+        }
+        $output = array(
+                    "draw" => $_POST['draw'],
+                    "recordsTotal" => $this->item_model->count_all(),
+                    "recordsFiltered" => $this->item_model->count_filtered(),
+                    "data" => $data,
+				);
+				
+        // output to json format
+        echo json_encode($output);
+    }
+
 	public function index()
 	{
 		$data['row'] = $this->item_model->get();
@@ -89,8 +128,8 @@ class item extends CI_Controller {
 		$post = $this->input->post(null, true);
 		if(isset($_POST['add'])) {
 			if($this->item_model->cek_barcode($post['item_barcode'])->num_rows() > 0) {
-				$this->session->set_flashdata('error',"Barcode $post[item_barcode] sudah dipakai") ;
-				redirect('item/add');
+				echo "<script>alert('barcode sudah dipakai');</script>" ;
+				echo "<script>window.location= '".site_url('item/add')."';</script>";
 			} else {
 				
 				if(@$_FILES['item_img']['name'] != null ) {
@@ -98,30 +137,29 @@ class item extends CI_Controller {
 						$post['item_img'] = $this->upload->data('file_name') ;
 						$this->item_model->add($post);
 						if($this->db->affected_rows() > 0) {
-							$this->session->set_flashdata('sukses','Data berhasil disimpan') ;
+							echo "<script>alert('Data berhasil disimpan');</script>" ;
 						}
 				
-						redirect('item');
+						echo "<script>window.location= '".site_url('item')."';</script>";
 					} else {
-						$error = $this->upload->display_errors();
-						$this->session->set_flashdata('error',$error) ;
-						redirect('item/add');
+						echo "<script>alert('Data gagal disimpan');</script>" ;
+						echo "<script>window.location= '".site_url('item/add')."';</script>";
 					} 
 				} else {
 					$post['image'] = null;
 					$this->item_model->add($post);
 					if($this->db->affected_rows() > 0) {
-						$this->session->set_flashdata('sukses','Data berhasil disimpan') ;
+						echo "<script>alert('Data berhasil disimpan');</script>" ;
 					}
 			
-					redirect('item');
+					echo "<script>window.location= '".site_url('item')."';</script>";
 				}
 			}
 		} else {
 			if(isset($_POST['edit'])) {
 				if($this->item_model->cek_barcode($post['item_barcode'],$post['item_id'])->num_rows() > 0) {
-					$this->session->set_flashdata('error',"Barcode $post[item_barcode] sudah dipakai") ;
-					redirect('item/edit/'.$post['item_id']);
+					echo "<script>alert('Barcode sudah dipakai');</script>" ;
+					echo "<script>window.location= '".site_url('item/edit/'.$post['item_id'])."';</script>";
 				} else {
 					if(@$_FILES['item_img']['name'] != null ) {
 						if($this->upload->do_upload('item_img')) {
@@ -136,32 +174,41 @@ class item extends CI_Controller {
 							$post['item_img'] = $this->upload->data('file_name') ;
 							$this->item_model->edit($post);
 							if($this->db->affected_rows() > 0) {
-								$this->session->set_flashdata('sukses','Data berhasil disimpan') ;
-							}
-					
-							redirect('item');
+								echo "<script>alert('Data berhasil dihapus');</script>" ;
+								}
+
+								echo "<script>window.location= '".site_url('item')."';</script>";
 						} else {
-							$error = $this->upload->display_errors();
-							$this->session->set_flashdata('error',$error) ;
-							redirect('item/add');
-						} 
+							echo "<script>alert('Data gagal disimpan');</script>" ;
+						}
+
+						echo "<script>window.location= '".site_url('item/add')."';</script>";
 					} else {
 						$post['image'] = null;
 						$this->item_model->edit($post);
 						if($this->db->affected_rows() > 0) {
-							$this->session->set_flashdata('sukses','Data berhasil disimpan') ;
-						}				
-						redirect('item');						
+							echo "<script>alert('Data berhasil disimpan');</script>" ;
+						}
+
+						echo "<script>window.location= '".site_url('item')."';</script>";						
+				
+					}
 				}
 			}
 		}
-
+	
 	}
-}
+	public function del($id) {
+		$del = $this->item_model->get($id);
 
-	public function del() {
+		$item = $this->item_model->get($id)->row() ;
+			if($item->item_img != null ) {
+				$target_file = './upload/item_img/'.$item->item_img ;
+				
+				// var_dump($target_file);
+				unlink($target_file);
 
-		$id = $this->input->post('item_id');
+			}
 
 		$this->item_model->del($id);
 
@@ -172,4 +219,7 @@ class item extends CI_Controller {
 		echo "<script>window.location= '".site_url('item')."';</script>";
 	}
 
+	
+
 }
+
