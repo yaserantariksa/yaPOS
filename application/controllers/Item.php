@@ -174,7 +174,7 @@ class item extends CI_Controller {
 							$post['item_img'] = $this->upload->data('file_name') ;
 							$this->item_model->edit($post);
 							if($this->db->affected_rows() > 0) {
-								echo "<script>alert('Data berhasil dihapus');</script>" ;
+								echo "<script>alert('Data berhasil disimpan');</script>" ;
 								}
 
 								echo "<script>window.location= '".site_url('item')."';</script>";
