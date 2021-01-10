@@ -25,20 +25,20 @@
 
     <div class="box-body">
       <div class="row justify-content-center">
-        <div class="col-sm-8">
+        <div class="col-md-6">
 
           <a href="<?= site_url('stock/in'); ?>" class="btn btn-primary btn-flat btn-px-2 mb-4 float-right"><i class="fas   fa-chevron-circle-left mr-2"></i>Back</a>
 
           <form action="<?= site_url('stock/process'); ?>" method="post">
 
             <div class="form-group input-group">
-              <label for="stock_date" class="col-sm-3 col-form-label">Tanggal</label>
+              <label for="stock_date" class="col-sm-2 col-form-label">Tanggal</label>
               <input type="hidden" name="stock_id" value="">
               <input type="date" class="form-control" id="stock_date" name="stock_date" value="<?= date('Y-m-d'); ?>" required>
             </div>
 
             <div class="form-group input-group">
-              <label for="item_barcode" class="col-sm-3 col-form-label">Barcode</label>
+              <label for="item_barcode" class="col-sm-2 col-form-label">Barcode</label>
               <input type="hidden" name="item_id" id="item_id" value="">
               <input type="text" class="form-control" id="item_barcode" name="item_barcode" value="" required autofocus>
               <span>
@@ -49,43 +49,43 @@
             </div>
 
             <div class="form-group input-group">
-              <label for="item_name" class="col-sm-3 col-form-label">Nama Barang</label>
+              <label for="item_name" class="col-sm-2 col-form-label">Nama Barang</label>
               <input type="text" class="form-control" id="item_name" name="item_name" value="" readonly>
             </div>
 
             <div class="form-group">
               <div class="row">
                 <div class="col-sm-6 input-group">
-                  <label for="unit_code" class="col-sm-3">Satuan</label>
-                  <input type="text"  name="unit_code" id="unit_code" value="-" class="form-control" readonly>
+                  <label for="unit_code" class="col-sm-4">Satuan</label>
+                  <input type="text" name="unit_code" id="unit_code" value="-" class="form-control" readonly>
                 </div>
                 <div class="col-sm-6 input-group">
-                  <label for="item_stock" class="col-sm-3">Stock awal</label>
-                  <input type="text"  name="item_stock" id="item_stock" value="-" class="form-control" readonly>
+                  <label for="item_stock" class="col-sm-4">Stock awal</label>
+                  <input type="text" name="item_stock" id="item_stock" value="-" class="form-control" readonly>
                 </div>
               </div>
             </div>
 
             <div class="form-group input-group">
-              <label for="stock_detail" class="col-sm-3 col-form-label">Detail</label>
-              <input type="text" class="form-control" id="stock_detail" name="stock_detail" value="" >
+              <label for="stock_detail" class="col-sm-2 col-form-label">Detail</label>
+              <input type="text" class="form-control" id="stock_detail" name="stock_detail" value="">
             </div>
 
             <div class="form-group input-group">
-              <label for="supplier_id" class="col-sm-3 col-form-label">Supplier</label>              
+              <label for="supplier_id" class="col-sm-2 col-form-label">Supplier</label>
               <select class="custom-select" name="supplier_id" id="supplier_id">
-                          <option>- Pilih -</option>
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                        </select>
-                        
+                <option>- Pilih -</option>
+                <option>option 1</option>
+                <option>option 2</option>
+                <option>option 3</option>
+                <option>option 4</option>
+              </select>
+
             </div>
 
             <div class="form-group input-group">
-              <label for="stock_qty" class="col-sm-3 col-form-label">Qty</label>
-              <input type="text" class="form-control" id="stock_qty" name="stock_qty" value="" >
+              <label for="stock_qty" class="col-sm-2 col-form-label">Qty</label>
+              <input type="text" class="form-control" id="stock_qty" name="stock_qty" value="">
             </div>
 
             <div>
@@ -102,7 +102,48 @@
     </div>
   </div>
 </section>
-<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+
+<div class="modal fade" id="modal-item">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Pilih Produk</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body table-responsive">
+        <table class="table table-borrdered table-sm" id="table2">
+          <thead>
+            <td>Barcode</td>
+            <td>Home</td>
+            <td>Unit</td>
+            <td>Price</td>
+            <td>Stock</td>
+            <td>Actions</td>
+          </thead>
+          <tbody>
+            <!-- lempar data dari controler stock-->
+            <?php foreach ($item as $i => $data) {; ?>
+              <tr>
+                <td><?= $data->item_barcode ?> </td>
+                <td><?= $data->item_name ?> </td>
+                <td><?= $data->unit_code ?> </td>
+                <td><?= $data->item_harbel ?> </td>
+                <td><?= $data->item_stock ?> </td>
+                <td>
+                  <button class="btn btn-flat btn-info btn-sm">
+                    Select
+                  </button>
+
+                </td>
+              </tr>
+            <?php }; ?>
+          </tbody>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

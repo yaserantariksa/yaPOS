@@ -1,29 +1,38 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Stock extends CI_Controller {
+class Stock extends CI_Controller
+{
 
-	public function index()
-	{
-		check_not_login();
-		
-		$this->template->load('template','dashboard');
+  function __construct()
+  {
+    parent::__construct();
+    check_not_login();
+    $this->load->model(['item_model','supplier_model']);
+  }
+
+  public function index()
+  {
+
+    $this->template->load('template', 'dashboard');
+  }
+
+  public function stock_in_data()
+  {
+    $this->template->load('template', 'transaction/stock_in/stock_in_data');
+  }
+
+  public function stock_in_add()
+  {
+    $item = $this->item_model->get()->result();
+    $data = ['item' => $item];
+    $this->template->load('template', 'transaction/stock_in/stock_in_form',$data);
+  }
+
+  public function process()
+  {
+    if (isset($_POST['in_add'])) {
+      echo " prosess stock in dan add ";
     }
-    
-    public function stock_in_data() {
-      $this->template->load('template','transaction/stock_in/stock_in_data');
-
-    }
-
-    public function stock_in_add() {
-      $this->template->load('template','transaction/stock_in/stock_in_form');
-    }
-
-    public function process() {
-      if(isset($_POST['in_add'])) {
-        echo " prosess stock in dan add " ;
-      }
-    }
-
-
+  }
 }
