@@ -66,6 +66,28 @@
               </div>
             </div>
 
+            <div class="form-group input-group">
+              <label for="stock_detail" class="col-sm-3 col-form-label">Detail</label>
+              <input type="text" class="form-control" id="stock_detail" name="stock_detail" value="" >
+            </div>
+
+            <div class="form-group input-group">
+              <label for="supplier_id" class="col-sm-3 col-form-label">Supplier</label>              
+              <select class="custom-select" name="supplier_id" id="supplier_id">
+                          <option>- Pilih -</option>
+                          <option>option 1</option>
+                          <option>option 2</option>
+                          <option>option 3</option>
+                          <option>option 4</option>
+                        </select>
+                        
+            </div>
+
+            <div class="form-group input-group">
+              <label for="stock_qty" class="col-sm-3 col-form-label">Qty</label>
+              <input type="text" class="form-control" id="stock_qty" name="stock_qty" value="" >
+            </div>
+
             <div>
               <p><small>* wajib di isi</small></p>
             </div>
