@@ -25,7 +25,8 @@ class Stock extends CI_Controller
   public function stock_in_add()
   {
     $item = $this->item_model->get()->result();
-    $data = ['item' => $item];
+    $supplier = $this->supplier_model->get()->result();
+    $data = ['item' => $item, 'supplier' => $supplier];
     $this->template->load('template', 'transaction/stock_in/stock_in_form',$data);
   }
 

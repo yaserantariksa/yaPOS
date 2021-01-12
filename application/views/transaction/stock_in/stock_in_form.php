@@ -38,6 +38,17 @@
             </div>
 
             <div class="form-group input-group">
+              <label for="supplier_id" class="col-sm-2 col-form-label">Supplier</label>
+              <select class="custom-select" name="supplier_id" id="supplier_id">
+                <option>- Pilih -</option>
+                <?php foreach($supplier as $i => $data) { ?>
+                  <option value="<?=$data->supplier_id ; ?> "><?=$data->sup_name; ?></option>
+                <?php ;} ;?> 
+                  
+              </select>
+            </div>
+
+            <div class="form-group input-group">
               <label for="item_barcode" class="col-sm-2 col-form-label">Barcode</label>
               <input type="hidden" name="item_id" id="item_id" value="">
               <input type="text" class="form-control" id="item_barcode" name="item_barcode" value="" required autofocus>
@@ -67,29 +78,19 @@
             </div>
 
             <div class="form-group input-group">
-              <label for="stock_detail" class="col-sm-2 col-form-label">Detail</label>
-              <input type="text" class="form-control" id="stock_detail" name="stock_detail" value="">
+              <label for="item_harbel" class="col-sm-2 col-form-label">Harga Pembelian</label>
+              <input type="text" class="form-control" id="item_harbel" name="item_harbel" value="">
             </div>
 
-            <div class="form-group input-group">
-              <label for="supplier_id" class="col-sm-2 col-form-label">Supplier</label>
-              <select class="custom-select" name="supplier_id" id="supplier_id">
-                <option>- Pilih -</option>
-                <option>option 1</option>
-                <option>option 2</option>
-                <option>option 3</option>
-                <option>option 4</option>
-              </select>
-
-            </div>
 
             <div class="form-group input-group">
               <label for="stock_qty" class="col-sm-2 col-form-label">Qty</label>
               <input type="text" class="form-control" id="stock_qty" name="stock_qty" value="">
             </div>
 
-            <div>
-              <p><small>* wajib di isi</small></p>
+            <div class="form-group input-group">
+              <label for="stock_detail" class="col-sm-2 col-form-label">Detail</label>
+              <input type="text" class="form-control" id="stock_detail" name="stock_detail" value="">
             </div>
 
             <div class="form-group">
@@ -129,10 +130,17 @@
                 <td><?= $data->item_barcode ?> </td>
                 <td><?= $data->item_name ?> </td>
                 <td><?= $data->unit_code ?> </td>
-                <td><?= $data->item_harbel ?> </td>
+                <td><?= indo_currency($data->item_harbel) ?> </td>
                 <td><?= $data->item_stock ?> </td>
                 <td>
-                  <button class="btn btn-flat btn-info btn-sm">
+                  <button class="btn btn-flat btn-info btn-sm" id="select"
+                    data-id= "<?=$data->item_id;?>"
+                    data-barcode= "<?=$data->item_barcode;?>"
+                    data-name= "<?=$data->item_name;?>"
+                    data-unit= "<?=$data->unit_code;?>"
+                    data-stock= "<?=$data->item_stock;?>"
+                    data-harbel= "<?=$data->item_harbel;?>"
+                    >
                     Select
                   </button>
 
@@ -147,3 +155,23 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $(document).on('click','#select',function() {
+      var item_id = $(this).data('id')
+      var item_barcode = $(this).data('barcode');
+      var item_name = $(this).data('name');
+      var unit_code = $(this).data('unit');
+      var item_stock = $(this).data('stock');
+      var item_harbel = $(this).data('harbel');
+      $('#item_id').val(item_id);
+      $('#item_barcode').val(item_barcode);
+      $('#item_name').val(item_name);
+      $('#unit_code').val(unit_code);
+      $('#item_stock').val(item_stock);
+      $('#item_harbel').val(item_harbel);
+      $('#modal-item').modal('hide');
+    })
+  })
+</script>
