@@ -130,6 +130,20 @@ class item_model extends CI_Model
         $this->db->delete('tb_product_item');
     }
 
+    public function update_stock_in($data) 
+    {
+        $qty = $data['stock_qty'];
+        $id = $data['item_id'];
+        $harbel = $data['stock_harbel'] ;
+
+        $sql = "UPDATE tb_product_item SET item_stock = item_stock + '$qty' WHERE item_id = '$id' " ;
+        $updateharbel = "UPDATE tb_product_item SET item_harbel = '$harbel' ";
+
+        $this->db->query($sql);
+        $this->db->query($updateharbel);
+
+    }
+
 }
 
 

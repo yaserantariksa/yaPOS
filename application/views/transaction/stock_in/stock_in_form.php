@@ -78,8 +78,8 @@
             </div>
 
             <div class="form-group input-group">
-              <label for="item_harbel" class="col-sm-2 col-form-label">Harga Pembelian</label>
-              <input type="text" class="form-control" id="item_harbel" name="item_harbel" value="">
+              <label for="stock_harbel" class="col-sm-2 col-form-label">Harga Pembelian</label>
+              <input type="text" class="form-control" id="stock_harbel" name="stock_harbel" value="">
             </div>
 
 
@@ -170,7 +170,7 @@
       $('#item_name').val(item_name);
       $('#unit_code').val(unit_code);
       $('#item_stock').val(item_stock);
-      $('#item_harbel').val(item_harbel);
+      $('#stock_harbel').val(item_harbel);
       $('#modal-item').modal('hide');
     })
   })

@@ -8,7 +8,7 @@ class Stock extends CI_Controller
   {
     parent::__construct();
     check_not_login();
-    $this->load->model(['item_model','supplier_model']);
+    $this->load->model(['item_model','supplier_model','stock_model']);
   }
 
   public function index()
@@ -33,7 +33,15 @@ class Stock extends CI_Controller
   public function process()
   {
     if (isset($_POST['in_add'])) {
-      echo " prosess stock in dan add ";
+      $post = $this->input->post(null,true) ;
+      $this->stock_model->add_stock_in($post);
+      $this->item_model->update_stock_in($post);
+      if($this->db->affected_rows() > 0) {
+        echo "<script>alert('Data berhasil diproses');</script>" ;
+      }
+  
+      echo "<script>window.location= '".site_url('stock/in')."';</script>";
+
     }
   }
 }
