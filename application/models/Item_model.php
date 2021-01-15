@@ -137,7 +137,7 @@ class item_model extends CI_Model
         $harbel = $data['stock_harbel'] ;
 
         $sql = "UPDATE tb_product_item SET item_stock = item_stock + '$qty' WHERE item_id = '$id' " ;
-        $updateharbel = "UPDATE tb_product_item SET item_harbel = '$harbel' ";
+        $updateharbel = "UPDATE tb_product_item SET item_harbel = '$harbel' WHERE item_id = '$id' ";
 
         $this->db->query($sql);
         $this->db->query($updateharbel);
