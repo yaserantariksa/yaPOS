@@ -47,6 +47,25 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php $no = 1 ; 
+                        foreach($row as $key => $data) { ;?>
+                        <tr>
+                        <td><?= $no++ ; ?> </td>
+                        <td><?= $data->stock_date ; ?> </td>
+                        <td><?= $data->sup_name ; ?> </td>
+                        <td><?= $data->item_barcode ;?> </td>
+                        <td><?= $data->item_name ; ?> </td>
+                        <td><?= $data->stock_qty ; ?> </td>
+                        <td><?= $data->stock_harbel ; ?> </td>
+                        <td><?= $data->stock_detail ; ?> </td>
+                        <td> Delete </td>
+                        </tr>
+
+
+
+
+
+                        <?php };?>
                             
                         </tbody>
 
