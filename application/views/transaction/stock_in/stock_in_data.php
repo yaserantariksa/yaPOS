@@ -59,9 +59,9 @@
                         <td><?= indo_currency($data->item_harbel) ; ?> </td>
                         <td><?= $data->stock_detail ; ?> </td>
                         <td> 
-                        <a href="<?=site_url('stock/in/detail/'.$data->item_id)?>" class="btn btn-primary btn-xs btn-flat"><i class="fas fa-eye mr-2"></i>Detail</a>
+                        <a href="<?=site_url('stock/in/detail/'.$data->stock_id)?>" class="btn btn-primary btn-xs btn-flat"><i class="fas fa-eye mr-2"></i>Detail</a>
 
-                        <a href="<?=site_url('stock/in/del/'.$data->stock_id)?>" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt mr-2"></i>Hapus</a>
+                        <a href="<?=site_url('stock/in/detail/'.$data->stock_id.'/'. $data->item_id)?>" class="btn btn-danger btn-xs btn-flat"><i class="fas fa-trash-alt mr-2"></i>Hapus</a>
                         </td>
                         </tr>
 
