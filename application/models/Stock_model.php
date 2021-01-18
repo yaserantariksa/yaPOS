@@ -7,7 +7,7 @@ class Stock_model extends CI_Model
         $this->db->select('*') ;
         $this->db->from('tb_stock') ;
         $this->db->join('tb_product_item', 'tb_stock.item_id = tb_product_item.item_id') ;
-        $this->db->join('tb_supplier', 'tb_stock.supplier_id = tb_supplier.supplier_id') ;
+        $this->db->join('tb_supplier', 'tb_stock.supplier_id = tb_supplier.supplier_id','left') ;
         $this->db->where('stock_type' , 'in') ;
         $this->db->order_by('stock_id','desc') ;
         $query = $this->db->get() ;
