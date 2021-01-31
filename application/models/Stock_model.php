@@ -3,6 +3,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Stock_model extends CI_Model
 {
+    public function get($id= null) {
+        $this->db->from('tb_stock');
+        if($id != null) {
+            $this->db->where('stock_id', $id);
+        }
+        $query = $this->db->get();
+        return $query;
+    }
+
+    public function del($id) {
+        $this->db->where('stock_id', $id);
+        $this->db->delete('tb_stock');
+    }
     public function get_stock_in() {
         $this->db->select('*') ;
         $this->db->from('tb_stock') ;

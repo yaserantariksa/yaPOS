@@ -33,8 +33,20 @@ class Stock extends CI_Controller
 
   public function stock_in_del()
   {
-    $stock_id = $this->url->segment(4);
-    $item_id = $this->url->segment(5);
+    $stock_id = $this->uri->segment(4);
+    $item_id = $this->uri->segment(5);
+    $qty = $this->stock_model->get($stock_id)->row()->stock_qty;
+    $data = ['stock_qty' => $qty, 'item_id' => $item_id];
+
+    $this->item_model->update_stock_out($data);
+
+    $this->stock_model->del($stock_id);
+
+    if ($this->db->affected_rows() > 0) {
+      echo "<script>alert('Data berhasil diproses');</script>";
+    }
+
+    echo "<script>window.location= '" . site_url('stock/in') . "';</script>";
   }
 
   public function process()
